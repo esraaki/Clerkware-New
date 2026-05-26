@@ -381,7 +381,7 @@ h1 em, h2 em, h3 em, h4 em, h5 em, h6 em{
 /* HERO STAGE — single image (Town of Townville site + Town Web dashboard composition) */
 .hero-stage{
   position:relative;
-  padding-right:clamp(16px,3vw,56px);
+  padding-right:0;
 }
 /* Soft ambient glow behind the hero image to lift it from the beige plate */
 .hero-stage::before{
