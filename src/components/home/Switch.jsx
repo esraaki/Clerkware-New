@@ -19,67 +19,58 @@ const CheckIcon = () => (
   </svg>
 );
 
-const LARGE_VENDORS = [
-  'Complex systems and contracts',
-  'Expensive add-ons and surprises',
-  'Slow support and ticket queues',
-  "You're just another account",
-];
-
-const TOWN_WEB = [
-  'Fixed-price, rate-locked',
-  'Built for clerks, by clerks',
-  'Real people. Real support.',
-  'One platform. One partner.',
+const ROWS = [
+  { label: 'Pricing', vendor: 'Per-module bundles, annual hikes', us: 'Fixed price, rate-locked' },
+  { label: 'Setup', vendor: 'Quarter-long onboarding', us: 'Live in weeks, not quarters' },
+  { label: 'Support', vendor: 'Ticket queues and SLAs', us: 'A real person, by name' },
+  { label: 'Updates', vendor: 'Paid upgrades', us: 'Included — every release' },
+  { label: 'Built for', vendor: 'Generic government', us: 'Clerks, by clerks' },
 ];
 
 export default function Switch() {
   return (
-    <section className="switch-home" data-reveal-section>
+    <section className="switch-home compare-home" data-reveal-section>
       <div className="container">
-        <div className="sw-grid">
-          <div className="sw-copy" data-reveal>
+        <div className="cmp-grid">
+          <div className="cmp-copy" data-reveal>
+            <span className="ps-eyebrow">Switching from other vendors?</span>
             <h2>
-              Considering a switch<br />from a larger provider?
+              Same job.<br />Half the cost. None of the queue.
             </h2>
             <p>
-              Many municipalities come to us after years of rising costs, slow support, and systems
-              that just don't fit.
+              Municipalities come to us after years of rising costs, slow tickets, and add-ons that
+              fix what the platform should have done. Here's the short version of why they stay.
             </p>
-            <a className="btn btn-primary" href="#/compare">
-              Compare your options
-            </a>
+            <div className="cmp-actions">
+              <a className="btn btn-primary" href="#/compare">
+                See the full comparison
+              </a>
+            </div>
           </div>
-          <div className="sw-compare" data-reveal data-reveal-delay="1">
-            <div className="sw-col sw-col-vs">
-              <span className="sw-h sw-h-vendor">Large vendors</span>
-              <ul>
-                {LARGE_VENDORS.map((text) => (
-                  <li key={text}>
-                    <span className="sw-x">
-                      <XIcon />
-                    </span>
-                    {text}
-                  </li>
-                ))}
-              </ul>
+
+          <div className="cmp-table" data-reveal data-reveal-delay="1">
+            <div className="cmp-table-head">
+              <span className="cmp-cell cmp-cell-label" />
+              <span className="cmp-cell cmp-h cmp-h-vendor">Other vendors</span>
+              <span className="cmp-cell cmp-h cmp-h-us">
+                Clerkware
+              </span>
             </div>
-            <span className="sw-vs" aria-hidden="true">
-              vs
-            </span>
-            <div className="sw-col sw-col-us">
-              <span className="sw-h sw-h-us">Town Web</span>
-              <ul>
-                {TOWN_WEB.map((text) => (
-                  <li key={text}>
-                    <span className="sw-ok">
-                      <CheckIcon />
-                    </span>
-                    {text}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <ul className="cmp-rows">
+              {ROWS.map((row) => (
+                <li key={row.label} className="cmp-row">
+                  <span className="cmp-cell cmp-cell-label">{row.label}</span>
+                  <span className="cmp-cell cmp-cell-vendor">
+                    <span className="cmp-ic cmp-ic-x"><XIcon /></span>
+                    <span className="cmp-text">{row.vendor}</span>
+                  </span>
+                  <span className="cmp-cell cmp-cell-us">
+                    <span className="cmp-ic cmp-ic-ok"><CheckIcon /></span>
+                    <span className="cmp-text">{row.us}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>

@@ -2,10 +2,6 @@ import { useFlagshipSteps } from '../../hooks/useFlagshipSteps.js';
 
 const STEPS = [
   {
-    title: 'Record the meeting',
-    body: "One click starts the session. ClerkMinutes captures audio and tracks who's speaking.",
-  },
-  {
     title: 'AI drafts clean minutes',
     body: "Action items, motions, and decisions — written in your municipality's voice and format.",
   },
@@ -42,7 +38,7 @@ export default function Flagship() {
                   className={'flagship-step' + (i === activeIndex ? ' is-active' : '')}
                   data-step={i + 1}
                 >
-                  <span className="num">{i + 1}</span>
+                  <span className="num">{String(i + 1).padStart(2, '0')}</span>
                   <div>
                     <h4>{step.title}</h4>
                     <p>{step.body}</p>
@@ -54,9 +50,6 @@ export default function Flagship() {
             <div className="flagship-cta">
               <a className="btn btn-primary" href="#/feature/meetings">
                 See it in action<span className="arrow" />
-              </a>
-              <a className="btn btn-link" href="#/feature/meetings">
-                Learn more <span className="arrow" />
               </a>
             </div>
           </div>

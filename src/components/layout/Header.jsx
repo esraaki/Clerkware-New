@@ -208,7 +208,8 @@ export default function Header({ activeRoute }) {
     <header className="site-header" id="site-header">
       <div className="header-inner">
         <a className="brand" href="#/home" aria-label="Town Web home" data-route-link="home" onClick={closeMenus}>
-          <BrandLogo />
+          <span className="brand-logo-light"><BrandLogo /></span>
+          <span className="brand-logo-dark" aria-hidden="true"><BrandLogo tone="dark" /></span>
         </a>
 
         <nav

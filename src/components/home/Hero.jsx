@@ -1,6 +1,46 @@
+import { useEffect, useState } from 'react';
+
+const FLOATING_CARDS = [
+  { key: 'minutes', label: 'Minutes generated', pos: 'tl' },
+  { key: 'website', label: 'Website updated', pos: 'mr' },
+  { key: 'alert', label: 'Alert sent', pos: 'bl' },
+];
+
+const CheckIcon = () => (
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <circle cx="12" cy="12" r="10" fill="#0fb37e" />
+    <path
+      d="M7.5 12.5l3 3 6-7"
+      stroke="#fff"
+      strokeWidth="2.4"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      fill="none"
+    />
+  </svg>
+);
+
 export default function Hero() {
+  const [visible, setVisible] = useState(0);
+
+  useEffect(() => {
+    let cancelled = false;
+    const timers = [];
+    // Stagger reveal — 700 ms after hero enters, then 380 ms apart.
+    [700, 1080, 1460].forEach((delay, i) => {
+      const id = setTimeout(() => {
+        if (!cancelled) setVisible(i + 1);
+      }, delay);
+      timers.push(id);
+    });
+    return () => {
+      cancelled = true;
+      timers.forEach(clearTimeout);
+    };
+  }, []);
+
   return (
-    <section className="hero" data-reveal-section>
+    <section className="hero hero--red" data-reveal-section>
       <div className="container-wide">
         <div className="hero-grid">
           <div className="hero-copy" data-reveal>
@@ -19,10 +59,10 @@ export default function Hero() {
               government actually works.
             </p>
             <div className="hero-actions">
-              <a className="btn btn-primary btn-lg" href="#/demo">
+              <a className="btn btn-hero-primary btn-lg" href="#/demo">
                 Request a demo
               </a>
-              <a className="btn btn-outline btn-lg" href="#/feature/meetings">
+              <a className="btn btn-hero-ghost btn-lg" href="#/feature/meetings">
                 See it in action
               </a>
             </div>
@@ -46,13 +86,23 @@ export default function Hero() {
             </div>
           </div>
 
-          <div className="hero-stage" data-reveal data-reveal-delay="1" aria-hidden="true">
+          <div className="hero-stage hero-stage--tablet" data-reveal data-reveal-delay="1">
             <img
-              className="hero-img"
-              src="/assets/images/hero-image.png"
-              alt="Town of Townville municipal website with Town Web platform dashboard overlay"
+              className="hero-tablet-img"
+              src="/assets/images/hero-real-image.png"
+              alt="Hands holding a tablet showing the Clerkware dashboard"
               loading="eager"
             />
+            {FLOATING_CARDS.map((card, i) => (
+              <div
+                key={card.key}
+                className={`hero-float hero-float-${card.pos}` + (i < visible ? ' is-in' : '')}
+                aria-hidden="true"
+              >
+                <span className="hero-float-ic"><CheckIcon /></span>
+                <span className="hero-float-label">{card.label}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>

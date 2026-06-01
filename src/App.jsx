@@ -54,15 +54,25 @@ export default function App() {
   // Re-observe revealed elements whenever the route changes.
   useReveal(pathKey);
 
-  // Header scrolled state — kept here so it survives navigation.
+  // Header scrolled / over-hero state — kept here so it survives navigation.
   useEffect(() => {
     const header = document.getElementById('site-header');
     if (!header) return undefined;
-    const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 12);
+    const isHome = route.name === 'home';
+    const onScroll = () => {
+      const y = window.scrollY;
+      if (isHome) {
+        header.classList.toggle('over-hero', y < 80);
+        header.classList.toggle('scrolled', y >= 80);
+      } else {
+        header.classList.remove('over-hero');
+        header.classList.toggle('scrolled', y > 12);
+      }
+    };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  }, [route.name]);
 
   // Year in footer is updated via a token; nothing else needed here.
   return (
