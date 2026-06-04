@@ -1,22 +1,16 @@
 /* ============================================================
    TEMPORARY DESIGN-IN-PROGRESS OVERLAY
    ------------------------------------------------------------
-   Temporary development lock screen. Blocks all interaction with
-   the site underneath while homepage changes are in progress.
+   Temporary development lock screen. Shows a dark/blurred,
+   non-dismissible modal over the site while homepage changes are
+   in progress. The page behind STAYS SCROLLABLE — the overlay does
+   not lock body scroll and uses pointer-events:none so wheel/touch
+   events pass straight through to the page underneath.
    To remove: delete this file and its <DesignInProgressOverlay />
    usage in src/App.jsx. Nothing else depends on it.
    ============================================================ */
-import { useEffect } from 'react';
-
 export default function DesignInProgressOverlay() {
-  // Lock scrolling while the overlay is visible.
-  useEffect(() => {
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.body.style.overflow = prevOverflow;
-    };
-  }, []);
+  // No scroll lock: body scrolling is intentionally left enabled.
 
   const backdrop = {
     position: 'fixed',
@@ -29,6 +23,9 @@ export default function DesignInProgressOverlay() {
     background: 'rgba(10, 12, 18, 0.62)',
     backdropFilter: 'blur(10px)',
     WebkitBackdropFilter: 'blur(10px)',
+    // Let scroll/clicks pass through to the page behind so it stays scrollable.
+    // There are no dismiss handlers anywhere, so the modal still cannot be closed.
+    pointerEvents: 'none',
   };
 
   const card = {
@@ -78,8 +75,9 @@ export default function DesignInProgressOverlay() {
   };
 
   return (
-    // Backdrop captures all clicks; no dismiss handlers are attached anywhere,
-    // so clicking outside, the Escape key, etc. cannot close this overlay.
+    // Backdrop is pointer-events:none so the page behind keeps scrolling.
+    // No dismiss handlers exist (no close button, no outside-click, no Escape),
+    // so the overlay cannot be closed until removed from code.
     <div style={backdrop} role="dialog" aria-modal="true" aria-labelledby="dip-title">
       <div style={card}>
         <span style={eyebrow}>Clerkware</span>
