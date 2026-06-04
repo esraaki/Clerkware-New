@@ -3,6 +3,8 @@ import Header from './components/layout/Header.jsx';
 import Footer from './components/layout/Footer.jsx';
 import { useHashRoute } from './hooks/useHashRoute.js';
 import { useReveal } from './hooks/useReveal.js';
+// TEMPORARY DESIGN-IN-PROGRESS OVERLAY — remove this import and its usage below to unlock the site.
+import DesignInProgressOverlay from './components/shared/DesignInProgressOverlay.jsx';
 
 import Home from './pages/Home.jsx';
 import Features from './pages/Features.jsx';
@@ -77,6 +79,8 @@ export default function App() {
   // Year in footer is updated via a token; nothing else needed here.
   return (
     <>
+      {/* TEMPORARY DESIGN-IN-PROGRESS OVERLAY — remove this line to unlock the site. */}
+      <DesignInProgressOverlay />
       <a href="#main" className="skip">
         Skip to content
       </a>
