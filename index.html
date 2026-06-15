@@ -172,7 +172,7 @@ header.nav.stuck .nav-inner{height:62px;background:rgba(255,255,255,.82);backdro
    HERO
    ============================================================ */
 .hero{position:relative;background:#F2EAE1;overflow:hidden}
-.hero-inner{position:relative;z-index:2;display:flex;align-items:center;min-height:clamp(520px,72vh,680px);padding-top:clamp(122px,14vh,184px);padding-bottom:clamp(72px,9vh,116px)}
+.hero-inner{position:relative;z-index:7;display:flex;align-items:center;min-height:clamp(520px,72vh,680px);padding-top:clamp(122px,14vh,184px);padding-bottom:clamp(72px,9vh,116px)}
 .hero-copy{max-width:600px}
 @media(max-width:760px){.hero-inner{min-height:auto}}
 .hero .pill{display:inline-flex;align-items:center;gap:9px;background:#fff;border:1px solid var(--hair);border-radius:var(--r-pill);padding:7px 15px 7px 8px;font-size:13px;font-weight:600;color:var(--ink-2);box-shadow:var(--sh-sm);margin-bottom:24px}
@@ -219,7 +219,11 @@ section.block{padding:clamp(80px,10vw,140px) 0}
 /* ============================================================
    WEBSITES
    ============================================================ */
-.websites{background:#F2EAE1;border-top:1px solid var(--hair)}
+.websites{background:#F1E6DC;border-top:1px solid var(--hair)}
+/* Keep the moving transition illustration behind this section's content:
+   raise the section's content wrapper above the fixed .wt-shared (z-index:6)
+   so text, buttons, and labels always sit above the travelling image. */
+.websites .wrap-wide{position:relative;z-index:7}
 .web-head{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,64px);align-items:end;margin-bottom:clamp(34px,4vw,54px)}
 .web-head-l h2{margin-top:16px}
 .web-head-r{max-width:480px}
@@ -667,7 +671,7 @@ footer{background:#0c0c0e;color:rgba(255,255,255,.66);padding:clamp(60px,8vw,90p
         <a class="btn btn-ghost btn-lg" href="#testimonials"><span class="lbl">See clerks love it</span> <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
       <div class="hero-stats">
-        <div class="s"><b>500+</b><span>municipalities</span></div>
+        <div class="s"><b>800+</b><span>municipalities</span></div>
         <div class="s"><b>40</b><span>states &amp; growing</span></div>
         <div class="s"><b>99.9%</b><span>hosting uptime</span></div>
       </div>
