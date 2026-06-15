@@ -1,4 +1,5 @@
 import Hero from '../components/home/Hero.jsx';
+import WebsiteTransition from '../components/home/WebsiteTransition.jsx';
 import ConnectedDashboard from '../components/home/ConnectedDashboard.jsx';
 import Municipalities from '../components/home/Municipalities.jsx';
 import FeatureCategories from '../components/home/FeatureCategories.jsx';
@@ -13,6 +14,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <WebsiteTransition />
       <ConnectedDashboard />
       <Municipalities />
       <FeatureCategories />

@@ -2203,6 +2203,96 @@ h1 em, h2 em, h3 em, h4 em, h5 em, h6 em{
 }
 
 /* ============================================================
+   WEBSITE TRANSITION — scroll-driven Hero → Municipal Websites
+   image sequence. Sticky canvas scrubs through 73 frames, then
+   the Municipal Websites copy fades in near the end.
+   ============================================================ */
+.wt{
+  position:relative;
+  background:#FDF6EE; /* warm ivory — bridges the red hero into the ivory sections below */
+}
+.wt-sticky{
+  position:sticky;
+  top:0;
+  height:100vh;
+  width:100%;
+  overflow:hidden;
+  display:block;
+}
+.wt-canvas{
+  display:block;
+  width:100%;
+  height:100%;
+}
+/* Copy overlay — anchored to the lower area, lifted on a soft ivory scrim so
+   the illustration stays the hero of the frame while the text reads cleanly. */
+.wt-content{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:flex-end;
+  pointer-events:none;
+}
+.wt-content::before{
+  content:"";
+  position:absolute;left:0;right:0;bottom:0;height:62%;
+  background:linear-gradient(180deg, rgba(253,246,238,0) 0%, rgba(253,246,238,.72) 46%, rgba(253,246,238,.96) 100%);
+}
+.wt-content .container{position:relative;padding-bottom:clamp(40px,7vh,84px)}
+.wt-copy{
+  position:relative;
+  max-width:640px;
+  opacity:0;
+  transform:translateY(22px);
+  transition:opacity .7s var(--ease-out), transform .7s var(--ease-out);
+}
+.wt-content.is-in{pointer-events:auto}
+.wt-copy.is-in{opacity:1;transform:none}
+.wt-eyebrow{
+  display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:14px;
+}
+.wt-copy h2{
+  font-size:clamp(28px,3.2vw,44px);font-weight:700;letter-spacing:-0.025em;line-height:1.12;
+  color:var(--ink-900);margin:0;
+}
+.wt-copy p{
+  margin:18px 0 0;max-width:560px;
+  font-size:clamp(16px,1.25vw,18px);line-height:1.55;color:var(--ink-600);
+}
+.wt-labels{
+  list-style:none;margin:26px 0 0;padding:0;
+  display:flex;flex-wrap:wrap;gap:10px;
+}
+.wt-label{
+  display:inline-flex;align-items:center;
+  font-size:13px;font-weight:600;color:var(--ink-700);
+  padding:7px 14px;background:#fff;
+  border:1px solid var(--line);border-radius:var(--r-pill);
+  box-shadow:var(--shadow-xs);
+}
+
+/* Reduced-motion fallback — static final illustration beside the copy. */
+.wt--static{padding:clamp(64px,7.5vw,108px) 0;height:auto!important}
+.wt-static-grid{
+  display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);
+  gap:clamp(32px,5vw,72px);align-items:center;
+}
+.wt-static-figure{margin:0}
+.wt-static-figure img{
+  display:block;width:100%;height:auto;border-radius:var(--r-lg);
+}
+.wt--static .wt-copy{opacity:1;transform:none}
+
+@media (max-width:900px){
+  .wt-static-grid{grid-template-columns:1fr;gap:32px}
+}
+@media (max-width:760px){
+  .wt-content .container{padding-bottom:36px}
+  .wt-copy p{font-size:16px}
+}
+
+/* ============================================================
    CONNECTED DASHBOARD — central screen + animated snippets
    ============================================================ */
 .cd-section{

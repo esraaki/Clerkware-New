@@ -3,15 +3,1078 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Town Web — Municipal Websites &amp; Clerkware™ for Clerks Who Run the Show</title>
+<meta name="description" content="Town Web builds stunning municipal websites and Clerkware™ — the all-in-one software clerks run on: meetings &amp; minutes, payments, alerts, permits, AI meeting minutes, and Vanteve, the AI assistant for residents. White-glove, U.S.-based support." />
 <meta name="robots" content="noindex, nofollow" />
-<title>Town Web — The Civic Operating System for American Municipalities</title>
-<meta name="description" content="Websites, payments, AI meeting minutes, alerts, permits and resident services — built on one platform, supported by humans. The civic infrastructure for modern local government." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Exo:wght@500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500;1,600&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   TOWN WEB — home page  ·  v2
+   Bold · editorial · civic · a little futuristic
+   Palette: black · white · beige · neutral grey · brand red · green
+   (no brown)
+   ============================================================ */
+
+:root{
+  /* Surfaces */
+  --bone:#f3efe6;          /* clean warm beige canvas */
+  --bone-2:#ebe6d9;        /* deeper beige block (still beige, not tan) */
+  --paper:#ffffff;
+  --paper-2:#faf9f6;
+
+  /* Ink — neutral near-black, NO warm/brown cast */
+  --ink:#131316;
+  --ink-2:#26262b;
+  --ink-3:#55555d;
+  --ink-4:#86868f;
+  --ink-5:#b3b3ba;
+  --hair:#e3e0d7;          /* light neutral hairline */
+  --hair-2:#eeebe3;
+
+  /* Brand */
+  --red:#e4291b;
+  --red-deep:#bf1a0f;
+  --red-ink:#7d1107;
+  --red-wash:#fbe7e3;
+  --red-tint:#fdf2ef;
+
+  /* Green accent (fresh / success / Vanteve / revenue) */
+  --green:#0e9e6e;
+  --green-deep:#0a7351;
+  --forest:#0d3b30;        /* immersive green world */
+  --green-soft:#dcf2e9;
+
+  --wrap:1240px;
+  --wrap-wide:1360px;
+  --gutter:clamp(20px,4vw,44px);
+
+  --r-sm:10px; --r-md:16px; --r-lg:22px; --r-xl:30px; --r-pill:999px;
+
+  --sh-sm:0 1px 2px rgba(19,19,22,.06), 0 1px 1px rgba(19,19,22,.04);
+  --sh-md:0 20px 44px -20px rgba(19,19,22,.24), 0 6px 14px -8px rgba(19,19,22,.12);
+  --sh-lg:0 48px 96px -36px rgba(19,19,22,.42), 0 16px 34px -18px rgba(19,19,22,.20);
+  --sh-red:0 22px 48px -20px rgba(191,26,15,.5);
+  --ease:cubic-bezier(.22,.85,.26,1);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;font-family:"Inter",system-ui,-apple-system,Segoe UI,Arial,sans-serif;
+  color:var(--ink-2);background:var(--bone);line-height:1.6;font-size:17px;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:clip;
+}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;background:none;border:0;color:inherit;padding:0}
+ul{list-style:none;margin:0;padding:0}
+::selection{background:var(--red);color:#fff}
+:focus-visible{outline:2.5px solid var(--red);outline-offset:3px;border-radius:8px}
+
+.wrap{width:min(100% - var(--gutter)*2,var(--wrap));margin-inline:auto}
+.wrap-wide{width:min(100% - var(--gutter)*2,var(--wrap-wide));margin-inline:auto}
+
+/* ---------- Type ---------- */
+h1,h2,h3,h4{font-family:"Montserrat",Georgia,serif;color:var(--ink);font-weight:700;line-height:1.0;letter-spacing:-.025em;margin:0}
+.display{font-size:clamp(42px,7vw,92px);line-height:.94;letter-spacing:-.04em;font-weight:700}
+h2{font-size:clamp(36px,5vw,68px);letter-spacing:-.03em;line-height:1.0}
+h3{font-size:clamp(26px,3vw,40px)}
+h4{font-size:clamp(19px,1.4vw,22px);font-weight:700}
+p{margin:0}
+em{font-style:italic;font-family:"Montserrat",serif;font-weight:600}
+.red{color:var(--red)}.grn{color:var(--green)}
+.lead{font-size:clamp(18px,1.45vw,22px);line-height:1.5;color:var(--ink-3)}
+.kicker{display:inline-flex;align-items:center;gap:10px;font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--red)}
+.kicker .tick{width:24px;height:2px;background:currentColor;display:inline-block}
+.kicker.on-dark{color:var(--red)}
+.mono{font-family:"JetBrains Mono",monospace}
+
+/* ---------- Buttons (crafted) ---------- */
+.btn{position:relative;display:inline-flex;align-items:center;gap:12px;font-weight:600;font-size:16px;
+  padding:15px 16px 15px 26px;border-radius:var(--r-pill);overflow:hidden;
+  transition:transform .25s var(--ease),box-shadow .3s var(--ease),background .25s,color .25s;isolation:isolate}
+.btn .lbl{position:relative;z-index:2}
+.btn .arr{position:relative;z-index:2;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;flex:none;transition:transform .3s var(--ease),background .25s}
+.btn .arr svg{width:16px;height:16px;transition:transform .3s var(--ease)}
+.btn:hover .arr svg{transform:translateX(2px)}
+.btn-primary{background:var(--red);color:#fff;box-shadow:var(--sh-red)}
+.btn-primary .arr{background:rgba(255,255,255,.22)}
+.btn-primary:hover{background:var(--red-deep);transform:translateY(-2px)}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-dark .arr{background:rgba(255,255,255,.16)}
+.btn-dark:hover{transform:translateY(-2px);box-shadow:var(--sh-md)}
+.btn-green{background:var(--green);color:#fff}
+.btn-green .arr{background:rgba(255,255,255,.22)}
+.btn-green:hover{background:var(--green-deep);transform:translateY(-2px)}
+.btn-light{background:#fff;color:var(--ink);border:1px solid var(--hair)}
+.btn-light .arr{background:var(--bone)}
+.btn-light:hover{transform:translateY(-2px);box-shadow:var(--sh-md)}
+.btn-on-dark{background:#fff;color:var(--ink)}
+.btn-on-dark .arr{background:var(--bone)}
+.btn-on-dark:hover{transform:translateY(-2px)}
+.btn-outline{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.32);padding-right:26px}
+.btn-outline:hover{border-color:#fff;transform:translateY(-2px)}
+.btn-ghost{padding:14px 6px;color:var(--ink);font-weight:600}
+.btn-ghost:hover{color:var(--red)}
+.btn-lg{font-size:17px;padding:18px 18px 18px 32px}
+.btn-lg .arr{width:34px;height:34px}
+
+/* ---------- Media placeholders ---------- */
+.media{position:relative;overflow:hidden;border-radius:var(--r-lg);background:linear-gradient(135deg,var(--bone) 0%,var(--bone-2) 100%);border:1px solid var(--hair)}
+.media.dark{background:linear-gradient(135deg,#1c1c20,#131316);border-color:rgba(255,255,255,.1)}
+.media img{position:relative;width:100%;height:100%;object-fit:cover;display:block}
+.media.loaded::after{display:none}
+
+/* ---------- Reveal ---------- */
+[data-rv]{opacity:0;transform:translateY(28px);transition:opacity .85s var(--ease),transform .85s var(--ease)}
+[data-rv].in{opacity:1;transform:none}
+[data-rv-d="1"]{transition-delay:.08s}[data-rv-d="2"]{transition-delay:.16s}
+[data-rv-d="3"]{transition-delay:.24s}[data-rv-d="4"]{transition-delay:.32s}
+
+/* ============================================================
+   NAV  —  floating island on scroll
+   ============================================================ */
+header.nav{position:fixed;top:0;left:0;right:0;z-index:80;transition:padding .35s var(--ease)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:66px;gap:20px;
+  width:min(100% - var(--gutter)*2,var(--wrap-wide));margin-inline:auto;padding:0 6px;
+  border-radius:var(--r-pill);transition:background .35s var(--ease),box-shadow .35s var(--ease),border-color .35s,padding .35s,height .35s;border:1px solid transparent}
+header.nav.stuck{padding-top:12px}
+header.nav.stuck .nav-inner{height:62px;background:rgba(255,255,255,.82);backdrop-filter:saturate(150%) blur(16px);border-color:var(--hair);box-shadow:var(--sh-md);padding:0 8px 0 18px}
+.brand{display:flex;align-items:center;gap:11px;font-family:"Inter";font-weight:800;font-size:21px;letter-spacing:-.025em;color:var(--ink);padding-left:8px}
+.brand .swoosh{width:36px;height:36px;flex:none}
+.brand-logo{height:25px;width:auto;display:block}
+.brand span{color:var(--red)}
+.nav-links{display:flex;align-items:center;gap:2px;margin-left:auto;margin-right:20px}
+.nav-links a{position:relative;padding:9px 15px;font-weight:600;font-size:15px;color:var(--ink-2);border-radius:var(--r-pill);display:inline-flex;align-items:center;gap:6px;transition:color .2s,background .2s}
+.nav-links a:hover{color:var(--ink);background:rgba(19,19,22,.05)}
+.nav-links a svg{width:13px;height:13px;opacity:.5}
+.nav-cta{display:flex;align-items:center;gap:8px}
+.nav-cta .ph{display:inline-flex;align-items:center;gap:7px;font-weight:600;font-size:14.5px;color:var(--ink);padding:8px 12px}
+.nav-cta .ph svg{width:15px;height:15px;color:var(--red)}
+.nav-cta .btn{padding:10px 12px 10px 20px;font-size:14.5px}
+.nav-cta .btn .arr{width:28px;height:28px}
+.nav-burger{display:none}
+
+.has-mega{position:relative}
+.mega{position:absolute;top:calc(100% + 16px);left:50%;transform:translateX(-50%) translateY(8px);width:700px;max-width:92vw;background:#fff;border:1px solid var(--hair);border-radius:var(--r-xl);box-shadow:var(--sh-lg);padding:24px;opacity:0;visibility:hidden;transition:.24s var(--ease);display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px 24px;z-index:90}
+.has-mega:hover .mega,.has-mega:focus-within .mega{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+.mega h6{grid-column:span 3;font:600 11px/1 "JetBrains Mono";letter-spacing:.14em;text-transform:uppercase;color:var(--ink-4);margin:8px 8px 4px}
+.mega .mi{display:flex;gap:12px;padding:10px;border-radius:12px;align-items:flex-start;transition:background .18s}
+.mega .mi:hover{background:var(--bone)}
+.mega .mi svg{width:20px;height:20px;color:var(--ink-3);flex:none;margin-top:2px;transition:color .18s}
+.mega .mi:hover svg{color:var(--red)}
+.mega .mi b{display:block;font-size:14.5px;font-weight:600;color:var(--ink)}
+.mega .mi small{font-size:11.5px;color:var(--ink-4);font-family:"JetBrains Mono"}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{position:relative;background:#F2EAE1;overflow:hidden}
+.hero-inner{position:relative;z-index:2;display:flex;align-items:center;min-height:clamp(520px,72vh,680px);padding-top:clamp(122px,14vh,184px);padding-bottom:clamp(72px,9vh,116px)}
+.hero-copy{max-width:600px}
+@media(max-width:760px){.hero-inner{min-height:auto}}
+.hero .pill{display:inline-flex;align-items:center;gap:9px;background:#fff;border:1px solid var(--hair);border-radius:var(--r-pill);padding:7px 15px 7px 8px;font-size:13px;font-weight:600;color:var(--ink-2);box-shadow:var(--sh-sm);margin-bottom:24px}
+.hero .pill .tag{background:var(--ink);color:#fff;font-size:10.5px;font-weight:700;letter-spacing:.06em;padding:3px 9px;border-radius:var(--r-pill);text-transform:uppercase}
+.hero h1{margin-top:0}
+.hero .lead{margin-top:26px;max-width:520px}
+.hero-ctas{display:flex;gap:14px;align-items:center;margin-top:36px;flex-wrap:wrap}
+.hero-stats{display:flex;gap:36px;margin-top:48px;padding-top:28px;border-top:1px solid var(--hair)}
+.hero-stats .s b{font-family:"Montserrat";font-weight:600;font-size:34px;color:var(--ink);display:block;line-height:1}
+.hero-stats .s span{font-size:13px;color:var(--ink-4);font-weight:500;font-family:"JetBrains Mono";letter-spacing:.02em}
+
+.hero-visual{position:relative}
+.hero-visual .media{aspect-ratio:16/11;box-shadow:var(--sh-lg);border-radius:var(--r-xl)}
+.chip{position:absolute;background:#fff;border:1px solid var(--hair);border-radius:15px;box-shadow:var(--sh-md);padding:12px 16px;display:flex;align-items:center;gap:12px;font-size:13.5px;font-weight:600;color:var(--ink);z-index:3;animation:float 6s ease-in-out infinite}
+.chip .ic{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;flex:none}
+.chip .ic svg{width:19px;height:19px}
+.chip small{display:block;font-weight:500;color:var(--ink-4);font-size:11px;font-family:"JetBrains Mono"}
+.chip-1{top:7%;left:-36px;animation-delay:0s}.chip-1 .ic{background:var(--red-wash);color:var(--red)}
+.chip-2{bottom:18%;right:-32px;animation-delay:1.2s}.chip-2 .ic{background:var(--ink);color:#fff}
+.chip-3{bottom:-16px;left:30px;animation-delay:.6s}.chip-3 .ic{background:var(--ink);color:#fff}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+/* ============================================================
+   TRUST MARQUEE
+   ============================================================ */
+.trust{background:var(--ink);color:#fff;padding:26px 0;overflow:hidden}
+.trust .wrap-wide{display:flex;align-items:center;gap:30px}
+.trust .tlabel{font-family:"JetBrains Mono";font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#fff;flex:none;max-width:150px;line-height:1.6}
+.marq{flex:1;overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.marq ul{display:flex;gap:54px;align-items:center;width:max-content;animation:scroll 36s linear infinite}
+.marq .logo{height:28px;width:118px;opacity:.6;filter:brightness(0) invert(1);object-fit:contain}
+.marq-fall{font-family:"Montserrat";font-size:22px;font-weight:600;color:rgba(255,255,255,.42);white-space:nowrap}
+@keyframes scroll{to{transform:translateX(-50%)}}
+.trust .more{flex:none;font-size:13px;font-weight:800;color:#fff;font-family:"JetBrains Mono"}
+
+/* ============================================================
+   Generic block
+   ============================================================ */
+section.block{padding:clamp(80px,10vw,140px) 0}
+.sec-head{max-width:740px}
+.sec-head .kicker{margin-bottom:18px}
+.sec-head p{margin-top:20px}
+
+/* ============================================================
+   WEBSITES
+   ============================================================ */
+.websites{background:#F2EAE1;border-top:1px solid var(--hair)}
+.web-head{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,64px);align-items:end;margin-bottom:clamp(34px,4vw,54px)}
+.web-head-l h2{margin-top:16px}
+.web-head-r{max-width:480px}
+.web-head-r .btn{margin-top:26px}
+.web-hero{margin:0;border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--sh-lg);border:1px solid var(--hair)}
+.web-hero img{width:100%;display:block}
+.web-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(32px,5vw,76px);align-items:center}
+.web-copy{max-width:460px}
+.web-copy h2{margin:18px 0 0}
+.web-copy .lead{margin-top:20px}
+.web-copy .btn{margin-top:30px}
+.web-mini{margin-top:34px;display:flex;flex-direction:column;gap:0;border-top:1px solid var(--hair)}
+.web-mini .row{display:flex;align-items:center;gap:14px;padding:16px 0;border-bottom:1px solid var(--hair)}
+.web-mini .row .n{font-family:"JetBrains Mono";font-size:12px;color:var(--ink-4);width:26px}
+.web-mini .row b{font-size:16px;font-weight:600;color:var(--ink)}
+.web-mini .row span{color:var(--ink-3);font-size:14px;margin-left:auto}
+
+.web-visual{position:relative}
+.browser{background:#fff;border:1px solid var(--hair);border-radius:var(--r-lg);box-shadow:var(--sh-lg);overflow:hidden}
+.bbar{display:flex;align-items:center;gap:7px;padding:12px 16px;border-bottom:1px solid var(--hair-2);background:var(--paper-2)}
+.bbar i{width:11px;height:11px;border-radius:50%;background:#dcd8cc;display:block}
+.bbar i:nth-child(1){background:#e4291b88}
+.bbar .url{margin-left:12px;font-family:"JetBrains Mono";font-size:12px;color:var(--ink-4);background:#fff;border:1px solid var(--hair-2);border-radius:var(--r-pill);padding:4px 16px}
+.web-visual .shot{aspect-ratio:16/10.5}
+.web-visual .phone{position:absolute;bottom:-28px;right:-22px;width:152px;border-radius:26px;border:7px solid var(--ink);background:var(--ink);box-shadow:var(--sh-lg);overflow:hidden}
+.web-visual .phone .media{border-radius:18px;aspect-ratio:9/18;border:0}
+
+/* capability trio — bold band */
+.caps{margin-top:clamp(60px,7vw,96px);display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--hair);border-radius:var(--r-xl);overflow:hidden;background:#fff}
+.cap{padding:38px;border-right:1px solid var(--hair);position:relative;transition:background .25s}
+.cap:last-child{border-right:0}
+.cap:hover{background:var(--paper-2)}
+.cap .num{font-family:"JetBrains Mono";font-size:12px;color:var(--ink-4);letter-spacing:.1em}
+.cap .fic{width:54px;height:54px;border-radius:15px;display:grid;place-items:center;margin:6px 0 22px}
+.cap .fic svg{width:27px;height:27px}
+.cap:nth-child(1) .fic{background:var(--red-wash);color:var(--red)}
+.cap:nth-child(2) .fic{background:var(--red-wash);color:var(--red)}
+.cap:nth-child(3) .fic{background:var(--red-wash);color:var(--red)}
+.cap h4{margin-bottom:10px;font-size:21px}
+.cap p{font-size:14.5px;color:var(--ink-3)}
+
+/* showcase gallery */
+.showcase{margin-top:clamp(64px,8vw,104px)}
+.showcase .sh{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:18px;margin-bottom:32px}
+.showcase .sh h3{max-width:520px}
+.gal{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:1fr;gap:18px}
+.site{position:relative;border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--hair);background:#fff;box-shadow:var(--sh-sm)}
+.site .media{border:0;border-radius:0;height:100%;width:100%;aspect-ratio:4/3;transition:transform .5s var(--ease)}
+.site:hover .media{transform:scale(1.05)}
+.site .ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(19,19,22,.86) 0%,rgba(19,19,22,.1) 48%,transparent 70%);display:flex;align-items:flex-end;padding:20px;opacity:1}
+.site .ov .nm{color:#fff}
+.site .ov b{font-family:"Montserrat";font-size:21px;font-weight:600;display:block;line-height:1.1}
+.site .ov span{font-size:12px;color:rgba(255,255,255,.7);font-family:"JetBrains Mono"}
+.site .visit{position:absolute;top:16px;right:16px;background:#fff;color:var(--ink);font-size:12px;font-weight:600;padding:7px 14px;border-radius:var(--r-pill);transform:translateY(-8px);opacity:0;transition:.3s var(--ease)}
+.site:hover .visit{transform:none;opacity:1}
+.site-lg{grid-column:span 3;grid-row:span 2}
+.site-sm{grid-column:span 3}
+@media(min-width:981px){.site-sm{grid-column:span 3}.gal{grid-template-columns:repeat(4,1fr)}.site-lg{grid-column:span 2;grid-row:span 2}.site-sm{grid-column:span 2}}
+
+/* ============================================================
+   PLATFORM INTRO
+   ============================================================ */
+.pintro{background:#FFFFFF;text-align:center}
+.pintro .wrap{max-width:840px}
+.pintro h2{margin:18px 0 0}
+.pintro p{margin:22px auto 0;max-width:600px}
+.pintro .kicker{justify-content:center}
+
+/* ============================================================
+   WORLDS — each platform category is its own world
+   ============================================================ */
+.world{position:relative;overflow:hidden;padding:clamp(72px,9vw,128px) 0}
+.world-inner{display:grid;grid-template-columns:1.04fr .96fr;gap:clamp(36px,5vw,80px);align-items:center;position:relative;z-index:2}
+.world.flip .world-media{order:-1}
+.world-index{font-family:"Montserrat";font-weight:600;font-size:clamp(120px,18vw,230px);line-height:.8;letter-spacing:-.04em;position:absolute;top:-.18em;right:-.02em;z-index:0;pointer-events:none}
+.world-eyebrow{font-family:"JetBrains Mono";font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;margin:0 0 10px}
+.world h3{font-size:clamp(32px,4vw,52px);margin-bottom:14px}
+.world .wlead{font-size:18px;line-height:1.5;max-width:440px;margin-bottom:30px}
+.wlist{display:flex;flex-direction:column}
+.wlist .wi{display:flex;gap:18px;align-items:center;padding:18px 0;border-top:1px solid;text-decoration:none;color:inherit;transition:padding-left .25s var(--ease)}
+.wlist a.wi{cursor:pointer}
+.wlist a.wi:hover{padding-left:6px}
+.wlist .wi .wic{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;flex:none;transition:transform .25s var(--ease)}
+.wlist a.wi:hover .wic{transform:scale(1.06)}
+.wlist .wi .wic svg{width:23px;height:23px}
+.wlist .wi b{font-size:17.5px;font-weight:600;display:block;transition:color .2s}
+.wlist .wi p{font-size:14px;margin-top:2px}
+.wlist a.wi::after{content:"→";margin-left:auto;padding-left:16px;font-size:18px;font-weight:600;opacity:.45;transition:transform .25s var(--ease),opacity .2s}
+.wlist a.wi:hover::after{opacity:1;transform:translateX(4px)}
+.world-01 .wlist a.wi::after,.world-02 .wlist a.wi::after{color:var(--red)}
+.world-03 .wlist a.wi::after{color:#fff}
+.world-01 .wlist a.wi:hover b{color:#ff8a7e}
+.world-02 .wlist a.wi:hover b{color:var(--red)}
+.world-03 .wlist a.wi:hover b{color:#ffd2cb}
+.world .btn{margin-top:32px}
+.world-media .media{aspect-ratio:4/3;box-shadow:var(--sh-lg)}
+/* world 02 — framed phone on light */
+.world-02 .world-media .media{background:#fff;aspect-ratio:4/4.2}
+.world-02 .world-media .media img{object-fit:contain;padding:20px}
+/* world 03 — overlapping cluster of 3 product cards */
+.rev-stack{position:relative;min-height:clamp(360px,40vw,470px)}
+.rev-stack img{position:absolute;border-radius:14px;background:#fff;box-shadow:var(--sh-lg);border:1px solid rgba(255,255,255,.55)}
+.rev-stack .rev-a{width:52%;top:9%;left:0;z-index:2;transform:rotate(-3deg)}
+.rev-stack .rev-b{width:45%;top:0;right:3%;z-index:1;transform:rotate(3.5deg)}
+.rev-stack .rev-c{width:50%;bottom:0;right:8%;z-index:3;transform:rotate(-1.5deg)}
+
+/* world 01 — dark engine room */
+.world-01{background:var(--ink);color:#fff}
+.world-01 .world-index{color:rgba(255,255,255,.06)}
+.world-01 .world-eyebrow{color:var(--red)}
+.world-01 h3{color:#fff}
+.world-01 .wlead{color:rgba(255,255,255,.66)}
+.world-01 .wlist .wi{border-color:rgba(255,255,255,.12)}
+.world-01 .wlist .wi:last-child{border-bottom:1px solid rgba(255,255,255,.12)}
+.world-01 .wic{background:rgba(255,255,255,.07);color:#fff}
+.world-01 .wlist .wi b{color:#fff}
+.world-01 .wlist .wi p{color:rgba(255,255,255,.55)}
+.world-01 .world-media .media{border-color:rgba(255,255,255,.1)}
+
+/* world 02 — bright residents */
+.world-02{background:var(--bone)}
+.world-02 .world-index{color:rgba(228,41,27,.08)}
+.world-02 .world-eyebrow{color:var(--red)}
+.world-02 .wlead{color:var(--ink-3)}
+.world-02 .wlist .wi{border-color:var(--hair)}
+.world-02 .wlist .wi:last-child{border-bottom:1px solid var(--hair)}
+.world-02 .wic{background:#fff;border:1px solid var(--hair);color:var(--red)}
+.world-02 .wlist .wi b{color:var(--ink)}
+.world-02 .wlist .wi p{color:var(--ink-3)}
+
+/* world 03 — revenue (deep brand red) */
+.world-03{background:linear-gradient(155deg,var(--red-deep) 0%,#9c1409 58%,var(--red-ink) 100%);color:#fff}
+.world-03 .world-index{color:rgba(255,255,255,.1)}
+.world-03 .world-eyebrow{color:#ffd2cb}
+.world-03 h3{color:#fff}
+.world-03 .wlead{color:rgba(255,255,255,.8)}
+.world-03 .wlist .wi{border-color:rgba(255,255,255,.2)}
+.world-03 .wlist .wi:last-child{border-bottom:1px solid rgba(255,255,255,.2)}
+.world-03 .wic{background:rgba(255,255,255,.15);color:#fff}
+.world-03 .wlist .wi b{color:#fff}
+.world-03 .wlist .wi p{color:rgba(255,255,255,.74)}
+.world-03 .world-media .media.dark{background:linear-gradient(135deg,#7d1107,#4a0a04);border-color:rgba(255,255,255,.18)}
+.world-03 .world-media .media.dark::after{color:rgba(255,255,255,.6)}
+
+/* ============================================================
+   AI MINUTES — dark dramatic editorial
+   ============================================================ */
+.minutes{background:radial-gradient(120% 105% at 84% 0%,#20202a 0%,#16161c 46%,#0e0e13 100%);color:#fff;position:relative;overflow:hidden}
+.minutes::before{content:"";position:absolute;top:-180px;left:-120px;width:560px;height:560px;background:radial-gradient(circle,rgba(228,41,27,.26),transparent 62%)}
+.minutes .wrap-wide{position:relative;z-index:2}
+.min-top{max-width:980px}
+.min-top .kicker{color:var(--red)}
+.min-top .kicker .tick{background:var(--red)}
+.min-top h2{color:#fff;font-size:clamp(38px,5.6vw,80px);margin-top:18px;line-height:1.0}
+.min-top h2 .dim{color:#fff;display:block}
+.min-proof{display:inline-flex;align-items:center;gap:12px;margin-top:28px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:var(--r-pill);padding:11px 22px;font-size:15px;color:rgba(255,255,255,.86)}
+.min-proof svg{width:19px;height:19px;color:var(--red);flex:none}
+.min-proof b{color:#fff;font-weight:700}
+.min-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(36px,5vw,72px);margin-top:clamp(44px,5vw,64px);align-items:center}
+.min-flow{display:flex;flex-direction:column;gap:0}
+.min-step{display:flex;gap:20px;align-items:flex-start;padding:22px 0;border-top:1px solid rgba(255,255,255,.16)}
+.min-step:last-child{border-bottom:1px solid rgba(255,255,255,.16)}
+.min-step .mn{font-family:"Montserrat";font-size:30px;font-weight:600;line-height:1;width:54px;flex:none;color:rgba(255,255,255,.4)}
+.min-step b{font-size:20px;font-weight:600;color:#fff;display:block;font-family:"Inter"}
+.min-step p{font-size:15px;color:rgba(255,255,255,.68);margin-top:4px}
+.min-flow .btn{margin-top:32px;align-self:flex-start}
+.min-shot{border-radius:var(--r-xl);overflow:hidden;border:1px solid rgba(255,255,255,.14);box-shadow:var(--sh-lg)}
+.min-shot .media{aspect-ratio:16/11;border:0;border-radius:0}
+.min-shot .media.dark{background:linear-gradient(135deg,#26262e,#15151b)}
+.min-shot .media.dark::after{color:rgba(255,255,255,.55)}
+
+/* ============================================================
+   VANTEVE — light section, dark chat console (red accents)
+   ============================================================ */
+.vanteve{background:var(--bone);position:relative;overflow:hidden}
+.vanteve::before{content:"";position:absolute;top:-160px;right:-120px;width:600px;height:600px;background:radial-gradient(circle,rgba(228,41,27,.1),transparent 62%)}
+.vanteve .wrap-wide{position:relative;z-index:2}
+.van-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(36px,5vw,76px);align-items:center}
+.van-copy{max-width:520px}
+.van-badge{display:inline-flex;align-items:center;gap:10px;background:var(--red-wash);border:1px solid #f1c6bf;color:var(--red-ink);padding:7px 16px 7px 8px;border-radius:var(--r-pill);font-size:13px;font-weight:600;margin-bottom:24px}
+.van-badge .vlogo{width:26px;height:26px;border-radius:8px;background:var(--red);display:grid;place-items:center}
+.van-badge .vlogo svg{width:15px;height:15px;color:#fff}
+.van-badge .new{background:var(--ink);color:#fff;font-size:10px;font-weight:800;letter-spacing:.08em;padding:2px 8px;border-radius:var(--r-pill);text-transform:uppercase}
+.van-copy h2{color:var(--ink);font-size:clamp(38px,5vw,68px)}
+.van-copy h2 em{color:var(--red)}
+.van-copy .lead{color:var(--ink-3);margin-top:24px}
+.van-points{margin:30px 0 0;display:flex;flex-direction:column;gap:16px}
+.van-points li{display:flex;gap:14px;align-items:flex-start;font-size:15.5px;color:var(--ink-2)}
+.van-points li b{color:var(--ink);font-weight:700}
+.van-points li svg{width:22px;height:22px;color:var(--red);flex:none;margin-top:1px}
+.van-copy .btn{margin-top:34px}
+
+.chat{background:#16161b;border:1px solid #2a2a32;border-radius:var(--r-xl);box-shadow:var(--sh-lg);overflow:hidden}
+.chat-top{display:flex;align-items:center;gap:13px;padding:18px 22px;border-bottom:1px solid rgba(255,255,255,.1)}
+.chat-top .av{width:40px;height:40px;border-radius:12px;background:linear-gradient(150deg,var(--red),var(--red-deep));display:grid;place-items:center;flex:none;box-shadow:0 0 0 1px rgba(255,255,255,.1),0 0 22px rgba(228,41,27,.4)}
+.chat-top .av svg{width:21px;height:21px;color:#fff}
+.chat-top b{font-size:15.5px;color:#fff;font-weight:700;display:block}
+.chat-top small{font-size:12px;color:rgba(255,255,255,.6);display:flex;align-items:center;gap:6px;font-family:"JetBrains Mono"}
+.chat-top small i{width:7px;height:7px;border-radius:50%;background:var(--red);box-shadow:0 0 0 3px rgba(228,41,27,.3)}
+.chat-top .town{margin-left:auto;font-size:11px;color:rgba(255,255,255,.4);font-family:"JetBrains Mono"}
+.chat-body{padding:24px 22px;display:flex;flex-direction:column;gap:15px;min-height:300px}
+.bub{max-width:82%;padding:13px 18px;border-radius:20px;font-size:14.5px;line-height:1.5}
+.bub.user{align-self:flex-end;background:#fff;color:var(--ink);border-bottom-right-radius:6px}
+.bub.bot{align-self:flex-start;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:#fff;border-bottom-left-radius:6px}
+.bub.bot b{color:#fff}
+.bub.bot .src{display:block;margin-top:10px;font-size:11px;color:rgba(255,255,255,.5);font-family:"JetBrains Mono"}
+.chat-input{display:flex;align-items:center;gap:11px;padding:15px 18px;border-top:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03)}
+.chat-input .fld{flex:1;font-size:14px;color:rgba(255,255,255,.5)}
+.chat-input .send{width:40px;height:40px;border-radius:12px;background:var(--red);display:grid;place-items:center;flex:none;box-shadow:0 0 20px rgba(228,41,27,.4)}
+.chat-input .send svg{width:18px;height:18px;color:#fff}
+
+/* ============================================================
+   STATS BAND — red
+   ============================================================ */
+.stats{background:var(--ink);color:#fff;position:relative;overflow:hidden}
+.stats::before{content:"";position:absolute;top:-180px;right:8%;width:480px;height:480px;background:radial-gradient(circle,rgba(228,41,27,.35),transparent 60%)}
+.stats .wrap{position:relative;z-index:2}
+.stats .sh{text-align:center;max-width:680px;margin:0 auto 56px}
+.stats .sh .kicker{justify-content:center;color:var(--red)}
+.stats .sh h2{color:#fff;margin-top:16px}
+.stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.stat{padding:0 28px;border-left:1px solid rgba(255,255,255,.16)}
+.stat:first-child{padding-left:0;border-left:0}
+.stat b{font-family:"Montserrat";font-weight:600;font-size:clamp(48px,6vw,76px);line-height:.92;display:block;letter-spacing:-.03em;color:#fff}
+.stat b .u{color:var(--red)}
+.stat span{font-size:14px;color:rgba(255,255,255,.66);margin-top:10px;display:block;font-family:"JetBrains Mono";letter-spacing:.02em}
+
+/* ============================================================
+   TESTIMONIALS — bold featured quote
+   ============================================================ */
+.testi{background:var(--bone)}
+.testi .sec-head{margin-bottom:48px}
+.t-feature{background:var(--ink);color:#fff;border-radius:var(--r-xl);padding:clamp(40px,5vw,72px);position:relative;overflow:hidden;margin-bottom:24px}
+.t-feature::before{content:"\201C";position:absolute;top:-.08em;left:.1em;font-family:"Montserrat";font-size:340px;line-height:1;color:rgba(255,255,255,.05);pointer-events:none}
+.t-feature .tf-grid{position:relative;z-index:2;display:grid;grid-template-columns:1fr auto;gap:48px;align-items:end}
+.t-feature blockquote{font-family:"Montserrat";font-weight:500;font-size:clamp(26px,3.2vw,44px);line-height:1.18;color:#fff;margin:0;letter-spacing:-.02em;max-width:880px}
+.t-feature blockquote em{color:#ff8a7e;font-weight:500}
+.t-feature .who{display:flex;align-items:center;gap:16px;white-space:nowrap}
+.t-feature .who .av{width:58px;height:58px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;font-weight:700;font-size:19px;flex:none}
+.t-feature .who b{font-size:17px;font-weight:700;color:#fff;display:block;font-family:"Inter"}
+.t-feature .who span{font-size:13px;color:rgba(255,255,255,.6);font-family:"JetBrains Mono"}
+.t-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.tcard{background:#fff;border:1px solid var(--hair);border-radius:var(--r-lg);padding:32px;display:flex;flex-direction:column;transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.tcard:hover{transform:translateY(-4px);box-shadow:var(--sh-md)}
+.tcard .stars{display:flex;gap:3px;margin-bottom:18px}
+.tcard .stars svg{width:18px;height:18px;color:var(--red)}
+.tcard blockquote{font-family:"Montserrat";font-size:20px;line-height:1.4;color:var(--ink);margin:0;font-weight:500;letter-spacing:-.01em}
+.tcard .who{display:flex;align-items:center;gap:13px;margin-top:auto;padding-top:26px}
+.tcard .who .av{width:46px;height:46px;border-radius:50%;background:var(--bone-2);color:var(--ink);display:grid;place-items:center;font-weight:700;font-size:15px;flex:none}
+.tcard .who b{font-size:15px;font-weight:700;color:var(--ink);display:block}
+.tcard .who span{font-size:12px;color:var(--ink-4);font-family:"JetBrains Mono"}
+
+/* ============================================================
+   SUPPORT — distinctive
+   ============================================================ */
+.support{background:var(--paper);border-top:1px solid var(--hair)}
+.sup-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(36px,5vw,80px);align-items:center}
+.sup-visual{position:relative}
+.sup-visual .media{aspect-ratio:4/4.4;box-shadow:var(--sh-lg);border-radius:var(--r-xl)}
+.sup-visual .callcard{position:absolute;left:-26px;bottom:36px;background:#fff;border:1px solid var(--hair);border-radius:var(--r-lg);box-shadow:var(--sh-lg);padding:18px 22px;display:flex;align-items:center;gap:14px}
+.sup-visual .callcard .ic{width:48px;height:48px;border-radius:50%;background:var(--red-wash);color:var(--red);display:grid;place-items:center;flex:none}
+.sup-visual .callcard .ic svg{width:24px;height:24px}
+.sup-visual .callcard b{font-family:"Montserrat";font-size:20px;font-weight:600;color:var(--ink);display:block;line-height:1}
+.sup-visual .callcard span{font-size:12px;color:var(--ink-4);font-family:"JetBrains Mono"}
+.sup-copy{max-width:520px}
+.sup-copy h2{margin:18px 0 0}
+.sup-copy .lead{margin-top:22px}
+.sup-promises{margin-top:38px;display:grid;grid-template-columns:1fr 1fr;gap:8px 36px}
+.promise{padding:22px 0;border-top:1px solid var(--hair);display:flex;gap:15px;align-items:flex-start}
+.promise .pic{width:42px;height:42px;border-radius:11px;background:var(--red-wash);color:var(--red);display:grid;place-items:center;flex:none}
+.promise:nth-child(2) .pic,.promise:nth-child(3) .pic{background:var(--ink);color:#fff}
+.promise .pic svg{width:21px;height:21px}
+.promise b{font-size:16.5px;font-weight:600;color:var(--ink);display:block}
+.promise p{font-size:13.5px;color:var(--ink-3);margin-top:3px}
+
+/* ============================================================
+   CTA — huge finale
+   ============================================================ */
+.cta{background:var(--ink);color:#fff;position:relative;overflow:hidden;text-align:center}
+.cta::before{content:"";position:absolute;top:-260px;left:50%;transform:translateX(-50%);width:1100px;height:780px;background:radial-gradient(circle,rgba(228,41,27,.34),transparent 56%)}
+.cta::after{content:"";position:absolute;bottom:-200px;right:-120px;width:520px;height:520px;background:radial-gradient(circle,rgba(255,255,255,.06),transparent 60%)}
+.cta .wrap{position:relative;z-index:2;padding:clamp(96px,13vw,180px) 0;max-width:960px;margin-inline:auto}
+.cta .kicker{justify-content:center;color:#fff;font-size:14px;letter-spacing:.2em}
+.cta h2{color:#fff;font-size:clamp(46px,8vw,108px);margin:20px 0 0;line-height:.94;letter-spacing:-.035em}
+.cta h2 em{color:var(--red);font-style:italic}
+.cta p{color:rgba(255,255,255,.72);font-size:clamp(17px,1.5vw,20px);margin:26px auto 0;max-width:600px}
+.cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:42px}
+.cta .phone{margin-top:34px;font-size:15px;color:rgba(255,255,255,.66);font-family:"JetBrains Mono"}
+.cta .phone b{color:#fff;font-family:"Montserrat";font-size:22px;font-weight:600}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer{background:#0c0c0e;color:rgba(255,255,255,.66);padding:clamp(60px,8vw,90px) 0 32px}
+.foot-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr 1fr;gap:34px;padding-bottom:50px;border-bottom:1px solid rgba(255,255,255,.1)}
+.foot-brand .brand{color:#fff;margin-bottom:18px;padding-left:0}
+.foot-brand .brand-logo{filter:brightness(0) invert(1)}
+.foot-brand p{font-size:14px;max-width:280px;line-height:1.6}
+.foot-brand .socials{display:flex;gap:10px;margin-top:22px}
+.foot-brand .socials a{width:40px;height:40px;border-radius:11px;border:1px solid rgba(255,255,255,.16);display:grid;place-items:center;transition:background .2s,border-color .2s}
+.foot-brand .socials a:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.3)}
+.foot-brand .socials svg{width:18px;height:18px;color:#fff}
+.fcol h6{font:600 11px/1 "JetBrains Mono";letter-spacing:.14em;text-transform:uppercase;color:#fff;margin:0 0 20px}
+.fcol a{display:block;font-size:14.5px;padding:7px 0;color:rgba(255,255,255,.66);transition:color .2s}
+.fcol a:hover{color:#fff}
+.fcol .num{font-family:"Montserrat";font-size:20px;color:#fff;font-weight:600}
+.foot-bot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;padding-top:28px;font-size:13px;color:rgba(255,255,255,.48);font-family:"JetBrains Mono"}
+.foot-bot .fb-links{display:flex;gap:24px}
+.foot-bot a:hover{color:#fff}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media(max-width:980px){
+  .hero-grid,.web-grid,.world-inner,.min-grid,.van-grid,.sup-grid{grid-template-columns:1fr;gap:42px}
+  .world.flip .world-media,.min-side{order:0}
+  .caps{grid-template-columns:1fr}.cap{border-right:0;border-bottom:1px solid var(--hair)}.cap:last-child{border-bottom:0}
+  .gal{grid-template-columns:repeat(2,1fr)}.site-lg,.site-sm{grid-column:span 1!important;grid-row:auto!important}
+  .web-head{grid-template-columns:1fr;gap:18px;align-items:start}
+  .rev-stack{min-height:420px}
+  .stat-row{grid-template-columns:repeat(2,1fr);gap:40px 0}.stat:nth-child(3){padding-left:0;border-left:0}
+  .t-grid{grid-template-columns:1fr}
+  .t-feature .tf-grid{grid-template-columns:1fr;gap:32px}
+  .sup-promises{grid-template-columns:1fr 1fr}
+  .foot-top{grid-template-columns:1fr 1fr;gap:38px}
+  .nav-links{display:none}.nav-cta .ph{display:none}
+  .nav-burger{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;border:1px solid var(--hair)}
+  .nav-burger svg{width:24px;height:24px}
+  .hero-visual{max-width:480px;margin-inline:auto}
+  .world-media{max-width:540px}
+}
+@media(max-width:560px){
+  body{font-size:16px}
+  .hero-stats{gap:22px;flex-wrap:wrap}
+  .gal{grid-template-columns:1fr}
+  .stat-row{grid-template-columns:1fr;gap:32px}
+  .sup-promises{grid-template-columns:1fr}
+  .foot-top{grid-template-columns:1fr}
+  .chip{display:none}
+  .hero-ctas,.cta-btns{flex-direction:column;align-items:stretch}
+  .hero-ctas .btn,.cta-btns .btn{justify-content:space-between}
+  .t-feature .who{white-space:normal}
+}
+
+.mmenu{position:fixed;inset:0;z-index:120;background:var(--bone);transform:translateX(100%);transition:transform .35s var(--ease);display:flex;flex-direction:column;padding:24px}
+.mmenu.open{transform:none}
+.mmenu .mhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:32px}
+.mmenu a{font-family:"Montserrat";font-size:28px;font-weight:600;color:var(--ink);padding:15px 0;border-bottom:1px solid var(--hair)}
+.mmenu .btn{margin-top:28px}
+.mclose{width:44px;height:44px;display:grid;place-items:center;border-radius:12px;border:1px solid var(--hair)}
+
+/* ============================================================
+   SHARED-ELEMENT TRANSITION
+   One illustration begins on the right of the Hero and travels
+   down/left into the Municipal Websites section while its frames
+   advance. A single fixed <img> (built in JS) is positioned by
+   scroll progress between two layout slots (hero-right, muni-left).
+   ============================================================ */
+.wt-slot{position:relative;width:100%;aspect-ratio:1056/872;overflow:hidden;background:transparent}
+.wt-slot img{width:100%;height:100%;object-fit:contain;display:block}
+/* Hero: copy left, illustration slot right */
+.hero-inner{gap:clamp(28px,4.5vw,68px)}
+.hero-copy{flex:1 1 540px}
+.hero-visual{flex:1 1 0;min-width:0;align-self:center;max-width:700px;margin:0}
+/* The travelling illustration — a single <img> created in JS, appended to
+   <body>, positioned fixed. No shadow / no card: it sits cleanly on the bg. */
+.wt-shared{position:fixed;left:0;top:0;z-index:6;pointer-events:none;object-fit:contain;display:block;will-change:transform,width,height}
+/* While the shared element is active, the static slot art is hidden — the
+   slots stay as invisible placeholders that only reserve layout space. */
+.wt-motion .wt-slot img{visibility:hidden}
+/* Municipal Websites head → image left, text right */
+.web-head{align-items:center}
+.web-figure{margin:0}
+.web-labels{list-style:none;display:flex;flex-wrap:wrap;gap:9px;margin:24px 0 0;padding:0}
+.web-labels li{font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:600;letter-spacing:.02em;color:var(--ink-2);background:var(--paper-2);border:1px solid var(--hair);border-radius:var(--r-pill);padding:7px 13px}
+.web-head-r .btn{margin-top:26px}
+@media(max-width:900px){
+  .hero-inner{flex-direction:column;align-items:stretch}
+  .hero-visual{max-width:none;align-self:stretch}
+  .web-head{grid-template-columns:1fr}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  [data-rv]{opacity:1;transform:none}
+}
+</style>
 </head>
 <body>
-<div id="root"></div>
-<script type="module" src="/src/main.jsx"></script>
+
+<!-- ========== NAV ========== -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#" aria-label="Town Web home"><img class="brand-logo" src="images/town%20web%20logo11.png" alt="Town Web" /></a>
+
+    <nav class="nav-links" aria-label="Primary">
+      <div class="has-mega">
+        <a href="#" aria-haspopup="true">Features <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m6 9 6 6 6-6"/></svg></a>
+        <div class="mega" role="menu">
+          <h6>For your team</h6>
+          <a class="mi" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 5h18v12H3z"/><path d="M8 21h8M12 17v4"/></svg><span><b>Meetings &amp; Minutes</b><small>agendas · AI minutes</small></span></a>
+          <a class="mi" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/></svg><span><b>Content &amp; Docs</b><small>records · FOIA</small></span></a>
+          <a class="mi" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 11l3 3 8-8"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg><span><b>Forms &amp; Workflows</b><small>routing · approvals</small></span></a>
+          <h6>For your residents</h6>
+          <a class="mi" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg><span><b>Alerts &amp; Notices</b><small>email · text · voice</small></span></a>
+          <a class="mi" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span><b>Event Calendar</b><small>public meetings</small></span></a>
+          <a class="mi" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"/></svg><span><b>311 Requests</b><small>report · track</small></span></a>
+          <h6>For your community</h6>
+          <a class="mi" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><span><b>Online Payments</b><small>taxes · utilities</small></span></a>
+          <a class="mi" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-6h6v6"/></svg><span><b>Facility Booking</b><small>parks · halls</small></span></a>
+          <a class="mi" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v16H4z"/><path d="M8 9h8M8 13h6"/></svg><span><b>Permits &amp; Licensing</b><small>apply · renew</small></span></a>
+        </div>
+      </div>
+      <a href="#">Compare</a>
+      <a href="#">Resources</a>
+      <a href="#">About</a>
+    </nav>
+
+    <div class="nav-cta">
+      <a class="btn btn-primary" href="#demo"><span class="lbl">Request a demo</span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <button class="nav-burger" id="burger" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<div class="mmenu" id="mmenu">
+  <div class="mhead">
+    <span class="brand" style="padding:0"><img class="brand-logo" src="images/town%20web%20logo11.png" alt="Town Web" /></span>
+    <button class="mclose" id="mclose" aria-label="Close menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+  </div>
+  <a href="#">Features</a><a href="#">Compare</a><a href="#">Resources</a><a href="#">About</a>
+  <a class="btn btn-primary btn-lg" href="#demo"><span class="lbl">Request a demo</span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+</div>
+
+<main>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <div class="wrap-wide hero-inner">
+    <div class="hero-copy" data-rv>
+      <h1 class="display">Municipal websites &amp; Clerkware™ for clerks who <em class="red">run the show.</em></h1>
+      <p class="lead">Stunning websites residents love. Smart tools for the people who keep the office running. Built for transparency — built for you.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary btn-lg" href="#demo"><span class="lbl">Request a demo</span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+        <a class="btn btn-ghost btn-lg" href="#testimonials"><span class="lbl">See clerks love it</span> <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="hero-stats">
+        <div class="s"><b>500+</b><span>municipalities</span></div>
+        <div class="s"><b>40</b><span>states &amp; growing</span></div>
+        <div class="s"><b>99.9%</b><span>hosting uptime</span></div>
+      </div>
+    </div>
+    <!-- Shared-element illustration — start slot (frame 0). Travels into the
+         Municipal Websites section as the visitor scrolls. -->
+    <figure class="hero-visual wt-slot" id="wtHeroSlot">
+      <img src="images/clerkware/website-transition/frame_00_delay-0.04s.jpg"
+        alt="A municipal clerk reviewing information on a tablet." loading="eager" />
+    </figure>
+  </div>
+</section>
+
+<!-- ========== WEBSITES (Municipal Websites — shared-element landing) ========== -->
+<section class="block websites">
+  <div class="wrap-wide">
+    <div class="web-head">
+      <!-- Shared-element illustration — end slot (final frame, left side). -->
+      <figure class="web-figure wt-slot" id="wtMuniSlot">
+        <img src="images/clerkware/website-transition/frame_72_delay-0.04s.jpg"
+          alt="A municipal clerk at a desk publishing updates to the town website." loading="lazy" />
+      </figure>
+      <div class="web-head-r" data-rv>
+        <span class="kicker"><span class="tick"></span> Municipal websites</span>
+        <h2>Beautiful town websites.<br />Easy for <em class="red">clerks</em> to update.</h2>
+        <p class="lead">Town Web designs, hosts, and maintains modern municipal websites connected to Clerkware, so staff can publish alerts, minutes, events, and updates from one place.</p>
+        <ul class="web-labels">
+          <li>Website updates</li>
+          <li>Alerts</li>
+          <li>Events</li>
+          <li>Meeting minutes</li>
+          <li>AI-assisted content</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- capability trio -->
+    <div class="caps" data-rv>
+      <div class="cap">
+        <div class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg></div>
+        <h4>AI Search built in</h4>
+        <p>Residents ask in plain language and land on the right page — no more digging through PDFs and menus.</p>
+      </div>
+      <div class="cap">
+        <div class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="8" r="1.4" fill="currentColor" stroke="none"/><path d="M9 11h6M12 11v6"/></svg></div>
+        <h4>ADA compliant</h4>
+        <p>WCAG-aligned out of the box, with continuous scans so your site stays accessible to every resident.</p>
+      </div>
+      <div class="cap">
+        <div class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6z"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <h4>Secure hosting</h4>
+        <p>Government-grade hosting, SSL, daily backups and 99.9% uptime — monitored by people, not just bots.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PLATFORM INTRO ========== -->
+<section class="block pintro">
+  <div class="wrap" data-rv>
+    <span class="kicker">The Clerkware™ platform</span>
+    <h2>One platform. <em class="red">Three worlds.</em> Everything connected.</h2>
+    <p class="lead">Every tool a clerk's office runs on — the back office, the residents, the budget — built by Town Web to work as one. No six logins. No four vendors.</p>
+  </div>
+</section>
+
+<!-- WORLD 01 -->
+<section class="world world-01" data-rv>
+  <div class="wrap-wide world-inner">
+    <span class="world-index">01</span>
+    <div class="world-text">
+      <p class="world-eyebrow">For your team</p>
+      <h3>Internal Operations</h3>
+      <p class="wlead">The engine room. Where agendas get built, minutes get written, and records stay findable.</p>
+      <div class="wlist">
+        <a class="wi" href="#"><span class="wic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 5h18v12H3z"/><path d="M8 21h8M12 17v4"/></svg></span><div><b>Meetings &amp; Minutes</b><p>Build agendas, run the meeting, generate minutes.</p></div></a>
+        <a class="wi" href="#"><span class="wic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/></svg></span><div><b>Content &amp; Documents</b><p>One source of truth for records, policies and FOIA.</p></div></a>
+        <a class="wi" href="#"><span class="wic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 11l3 3 8-8"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span><div><b>Forms &amp; Workflows</b><p>Route requests and approvals — no paper, no email chains.</p></div></a>
+      </div>
+    </div>
+    <div class="world-media"><div class="media dark"></div></div>
+  </div>
+</section>
+
+<!-- WORLD 02 -->
+<section class="world world-02 flip" data-rv>
+  <div class="wrap-wide world-inner">
+    <span class="world-index">02</span>
+    <div class="world-text">
+      <p class="world-eyebrow">For your residents</p>
+      <h3>Citizen Engagement</h3>
+      <p class="wlead">The front porch. Where residents get told what's happening — and get heard back.</p>
+      <div class="wlist">
+        <a class="wi" href="#"><span class="wic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg></span><div><b>Alerts &amp; Notifications</b><p>Reach everyone by email, text and voice in seconds.</p></div></a>
+        <a class="wi" href="#"><span class="wic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span><div><b>Event Calendar</b><p>Public meetings, closures and town events, in one place.</p></div></a>
+        <a class="wi" href="#"><span class="wic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"/></svg></span><div><b>311 Requests</b><p>Residents report a pothole; you track it to done.</p></div></a>
+      </div>
+    </div>
+    <div class="world-media"><div class="media"></div></div>
+  </div>
+</section>
+
+<!-- WORLD 03 -->
+<section class="world world-03" data-rv>
+  <div class="wrap-wide world-inner">
+    <span class="world-index">03</span>
+    <div class="world-text">
+      <p class="world-eyebrow">For your community</p>
+      <h3>Revenue &amp; Services</h3>
+      <p class="wlead">The front counter — online. Where money comes in and services go out, without the line.</p>
+      <div class="wlist">
+        <a class="wi" href="#"><span class="wic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></span><div><b>Online Payments</b><p>Taxes, utilities and fees collected without a counter line.</p></div></a>
+        <a class="wi" href="#"><span class="wic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-6h6v6"/></svg></span><div><b>Facility Reservations</b><p>Let residents book parks, halls and shelters online.</p></div></a>
+        <a class="wi" href="#"><span class="wic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v16H4z"/><path d="M8 9h8M8 13h6"/></svg></span><div><b>Permits &amp; Licensing</b><p>Apply, pay and renew — start to finish, all online.</p></div></a>
+      </div>
+    </div>
+    <div class="world-media"><div class="rev-stack"></div></div>
+  </div>
+</section>
+
+<!-- ========== AI MINUTES ========== -->
+<section class="block minutes">
+  <div class="wrap-wide">
+    <div class="min-top" data-rv>
+      <span class="kicker"><span class="tick"></span> AI Meeting Minutes</span>
+      <h2><span class="dim">Your meeting ended two hours ago.</span> Your minutes are already done.</h2>
+      <span class="min-proof"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Clerks save up to <b>6 hours</b> on every single meeting.</span>
+    </div>
+    <div class="min-grid">
+      <div class="min-flow" data-rv>
+        <div class="min-step"><span class="mn">01</span><div><b>Record the meeting</b><p>In the room or over Zoom — one click. Clerkware listens and follows along.</p></div></div>
+        <div class="min-step"><span class="mn">02</span><div><b>AI drafts the minutes</b><p>Motions, votes and action items, structured automatically in your house style.</p></div></div>
+        <div class="min-step"><span class="mn">03</span><div><b>You review &amp; publish</b><p>Edit anything, then push live to your website before you reach the parking lot.</p></div></div>
+        <a class="btn btn-primary" href="#demo"><span class="lbl">Request a demo</span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      </div>
+      <div class="min-shot-wrap" data-rv data-rv-d="2">
+        <div class="min-shot">
+          <div class="media dark"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== VANTEVE ========== -->
+<section class="block vanteve">
+  <div class="wrap-wide">
+    <div class="van-grid">
+      <div class="van-copy" data-rv>
+        <span class="van-badge"><span class="vlogo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg></span> Vanteve <span class="new">New</span></span>
+        <h2>Your town's answer to <em>every</em> resident question.</h2>
+        <p class="lead">Vanteve is the AI assistant that lives on your website and knows your town inside out. Residents ask anything — trash days, permits, tax deadlines, meeting times — and get an instant, accurate answer, day or night.</p>
+        <ul class="van-points">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Answers from <b>your</b> ordinances and pages — not the open internet.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Cites its source, so every reply is one staff can stand behind.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Cuts repeat phone calls so your office can do the real work.</li>
+        </ul>
+        <a class="btn btn-primary btn-lg" href="#demo"><span class="lbl">Meet Vanteve</span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      </div>
+
+      <div class="van-visual" data-rv data-rv-d="2">
+        <div class="chat">
+          <div class="chat-top">
+            <span class="av"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg></span>
+            <div><b>Vanteve</b><small><i></i> online · Town of Riverdale</small></div>
+            <span class="town">riverdale.gov</span>
+          </div>
+          <div class="chat-body">
+            <div class="bub user">When is bulk trash pickup on my street?</div>
+            <div class="bub bot">Bulk pickup for the <b>west side</b> is the <b>2nd Wednesday</b> each month — next on <b>May 14</b>. Place items curbside by 6 AM.<span class="src">source: Public Works · sanitation schedule</span></div>
+            <div class="bub user">Do I need a permit to build a fence?</div>
+            <div class="bub bot">Yes — fences over 4 ft need a <b>zoning permit</b> ($35). You can apply online in about 5 minutes. Want the link?<span class="src">source: Municipal Code § 12-4 · permits</span></div>
+          </div>
+          <div class="chat-input"><span class="fld">Ask Vanteve anything about Riverdale…</span><span class="send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== STATS ========== -->
+<section class="block stats" aria-label="By the numbers">
+  <div class="wrap">
+    <div class="sh" data-rv>
+      <span class="kicker">Joined by towns nationwide</span>
+      <h2>Clerks across the country already run on Town Web.</h2>
+    </div>
+    <div class="stat-row">
+      <div class="stat" data-rv><b>800<span class="u">+</span></b><span>municipalities served</span></div>
+      <div class="stat" data-rv data-rv-d="1"><b>40</b><span>states across the U.S.</span></div>
+      <div class="stat" data-rv data-rv-d="2"><b>1M<span class="u">+</span></b><span>residents served daily</span></div>
+      <div class="stat" data-rv data-rv-d="3"><b>15<span class="u">yr</span></b><span>partnering with clerks</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== TESTIMONIALS ========== -->
+<section class="block testi" id="testimonials">
+  <div class="wrap-wide">
+    <div class="sec-head" data-rv>
+      <span class="kicker"><span class="tick"></span> What clerks say</span>
+      <h2>Loved by the people who run the office.</h2>
+    </div>
+
+    <div class="t-feature" data-rv>
+      <div class="tf-grid">
+        <blockquote>"I really appreciate all that you guys have done. I've had some good feedback, and people say it is <em>easier to look things up.</em> Again — thanks so much."</blockquote>
+        <div class="who"><span class="av">CB</span><div><b>Cindy Baker</b><span>Village Clerk</span></div></div>
+      </div>
+    </div>
+
+    <div class="t-grid">
+      <div class="tcard" data-rv>
+        <div class="stars" aria-label="5 stars">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.3 6.9 1-5 4.8 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.8 6.9-1z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.3 6.9 1-5 4.8 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.8 6.9-1z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.3 6.9 1-5 4.8 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.8 6.9-1z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.3 6.9 1-5 4.8 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.8 6.9-1z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.3 6.9 1-5 4.8 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.8 6.9-1z"/></svg>
+        </div>
+        <blockquote>"The AI minutes alone gave me my Thursday nights back. What used to take a whole day is done before I get to the parking lot."</blockquote>
+        <div class="who"><span class="av">MR</span><div><b>Maria Reyes</b><span>City Clerk · Oakwood</span></div></div>
+      </div>
+      <div class="tcard" data-rv data-rv-d="1">
+        <div class="stars" aria-label="5 stars">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.3 6.9 1-5 4.8 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.8 6.9-1z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.3 6.9 1-5 4.8 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.8 6.9-1z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.3 6.9 1-5 4.8 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.8 6.9-1z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.3 6.9 1-5 4.8 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.8 6.9-1z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.3 6.9 1-5 4.8 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.8 6.9-1z"/></svg>
+        </div>
+        <blockquote>"When I call, a real person picks up and actually knows our town. That's worth more than any feature list."</blockquote>
+        <div class="who"><span class="av">DW</span><div><b>Dan Whitfield</b><span>Town Admin · Pine Hollow</span></div></div>
+      </div>
+      <div class="tcard" data-rv data-rv-d="2">
+        <div class="stars" aria-label="5 stars">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.3 6.9 1-5 4.8 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.8 6.9-1z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.3 6.9 1-5 4.8 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.8 6.9-1z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.3 6.9 1-5 4.8 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.8 6.9-1z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.3 6.9 1-5 4.8 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.8 6.9-1z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.3 6.9 1-5 4.8 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.8 6.9-1z"/></svg>
+        </div>
+        <blockquote>"Residents stopped calling to ask the same questions. Vanteve answers them — correctly — at 9 PM on a Sunday."</blockquote>
+        <div class="who"><span class="av">JL</span><div><b>Janet Liu</b><span>Clerk · Clearview</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SUPPORT ========== -->
+<section class="block support" id="support">
+  <div class="wrap-wide">
+    <div class="sup-grid">
+      <div class="sup-visual" data-rv>
+        <div class="media"></div>
+      </div>
+      <div class="sup-copy" data-rv data-rv-d="2">
+        <span class="kicker"><span class="tick"></span> White-glove support</span>
+        <h2>Support that feels like a <em class="red">friendly neighbor.</em></h2>
+        <p class="lead">Most software hands you a ticket portal and wishes you luck. We hand you a real person who picks up the phone, knows your town, and genuinely wants to help.</p>
+        <div class="sup-promises">
+          <div class="promise"><span class="pic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></span><div><b>Call us. We answer.</b><p>No phone trees, no hold music. A human every time.</p></div></div>
+          <div class="promise"><span class="pic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 2 4 5v6c0 5 3.5 8 8 11 4.5-3 8-6 8-11V5z"/><path d="m9 12 2 2 4-4"/></svg></span><div><b>White-glove service.</b><p>We handle setup, training and the fiddly bits.</p></div></div>
+          <div class="promise"><span class="pic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-7h6v7"/></svg></span><div><b>Midwestern values.</b><p>Straight answers, no upsell, we mean what we say.</p></div></div>
+          <div class="promise"><span class="pic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="9"/><path d="M2 12h20M12 2a14 14 0 0 1 0 20M12 2a14 14 0 0 0 0 20"/></svg></span><div><b>U.S.-based team.</b><p>Same time zones, same week, same country as you.</p></div></div>
+        </div>
+        <a class="btn btn-dark btn-lg" href="#demo" style="margin-top:36px"><span class="lbl">Talk to a real person — (608) 935-5388</span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CTA ========== -->
+<section class="cta" id="demo">
+  <div class="wrap">
+    <span class="kicker">Everything in one place</span>
+    <h2>Everything your clerk's office needs. <em>Finally</em> in one place.</h2>
+    <p>Websites, meeting minutes, forms, alerts, payments and Vanteve — one platform, backed by U.S.-based people who answer the phone.</p>
+    <div class="cta-btns">
+      <a class="btn btn-on-dark btn-lg" href="#"><span class="lbl">Request a demo</span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="btn btn-outline btn-lg" href="#"><span class="lbl">See it in action</span> <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 5v14l11-7z"/></svg></a>
+    </div>
+    <p class="phone">Or call — a real person picks up: <b>(608) 935-5388 · ext. 307</b></p>
+  </div>
+</section>
+
+</main>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="wrap-wide">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <span class="brand"><img class="brand-logo" src="images/town%20web%20logo11.png" alt="Town Web" /></span>
+        <p>The civic software platform for American municipalities — beautiful websites and the Clerkware™ tools clerks run on every day.</p>
+        <div class="socials">
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.8-2 3.7-2 4 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21H9z"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V5h-3c-2.2 0-4 1.8-4 4v2H7v4h3v8h4v-8h3l1-4h-4V9c0-.6.4-1 1-1z"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.2-.4-4.7a2.5 2.5 0 0 0-1.8-1.8C19.3 5 12 5 12 5s-7.3 0-8.8.5A2.5 2.5 0 0 0 1.4 7.3C1 8.8 1 12 1 12s0 3.2.4 4.7a2.5 2.5 0 0 0 1.8 1.8C4.7 19 12 19 12 19s7.3 0 8.8-.5a2.5 2.5 0 0 0 1.8-1.8C23 15.2 23 12 23 12zM10 15V9l5 3z"/></svg></a>
+        </div>
+      </div>
+      <div class="fcol"><h6>Features</h6><a href="#">Municipal websites</a><a href="#">Meetings &amp; minutes</a><a href="#">AI meeting minutes</a><a href="#">Vanteve assistant</a><a href="#">Alerts &amp; payments</a></div>
+      <div class="fcol"><h6>Solutions</h6><a href="#">Clerks</a><a href="#">Administrators</a><a href="#">Public works</a><a href="#">Counties</a><a href="#">Schools</a></div>
+      <div class="fcol"><h6>Company</h6><a href="#">About Town Web</a><a href="#">Customers</a><a href="#">Careers</a><a href="#">Resources</a><a href="#">Contact</a></div>
+      <div class="fcol"><h6>Talk to us</h6><a class="num" href="tel:+16089355388">(608) 935-5388</a><a href="mailto:hello@townweb.com">hello@townweb.com</a><a href="#demo">Request a demo</a><a href="#support">Get support</a></div>
+    </div>
+    <div class="foot-bot">
+      <span>© 2026 Town Web — civic software, made in the U.S.A.</span>
+      <div class="fb-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Accessibility</a><a href="#">Status</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const nav=document.getElementById('nav');
+const onScroll=()=>nav.classList.toggle('stuck',window.scrollY>24);
+onScroll();addEventListener('scroll',onScroll,{passive:true});
+
+const mm=document.getElementById('mmenu');
+document.getElementById('burger')?.addEventListener('click',()=>mm.classList.add('open'));
+document.getElementById('mclose')?.addEventListener('click',()=>mm.classList.remove('open'));
+mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mm.classList.remove('open')));
+
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12,rootMargin:'0px 0px -7% 0px'});
+document.querySelectorAll('[data-rv]').forEach(el=>io.observe(el));
+
+const ml=document.getElementById('marqList');if(ml)ml.innerHTML+=ml.innerHTML;
+
+document.querySelectorAll('.media img').forEach(img=>{
+  const done=()=>{const m=img.closest('.media');if(m&&img.naturalWidth>1)m.classList.add('loaded');};
+  if(img.complete)done();img.addEventListener('load',done);
+});
+
+/* ============================================================
+   SHARED-ELEMENT TRANSITION — Hero illustration → Municipal Websites
+   One <img> (appended to <body>, position:fixed) travels between
+   two layout slots — #wtHeroSlot (hero right) and #wtMuniSlot
+   (Municipal Websites left) — as scroll progress drives frame index,
+   position, and scale together. No pinned standalone section.
+   To swap the sequence later: update FRAME_DIR + FRAMES (exact
+   filenames, sorted in play order). Nothing else changes.
+   ============================================================ */
+(function(){
+  // Document-relative folder the frames live in (NOT root-relative, NOT /public).
+  // index.html sits at the project root next to images/, so this resolves both
+  // when served and when opened via file://. Browser path = FRAME_DIR + filename:
+  // images/clerkware/website-transition/frame_00_delay-0.04s.jpg
+  const FRAME_DIR='images/clerkware/website-transition/';
+  // Exact original filenames, sorted numerically by the number after "frame_".
+  const FRAMES=["frame_00_delay-0.04s.jpg","frame_01_delay-0.04s.jpg","frame_02_delay-0.05s.jpg","frame_03_delay-0.04s.jpg","frame_04_delay-0.04s.jpg","frame_05_delay-0.04s.jpg","frame_06_delay-0.04s.jpg","frame_07_delay-0.04s.jpg","frame_08_delay-0.05s.jpg","frame_09_delay-0.04s.jpg","frame_10_delay-0.04s.jpg","frame_11_delay-0.04s.jpg","frame_12_delay-0.04s.jpg","frame_13_delay-0.04s.jpg","frame_14_delay-0.05s.jpg","frame_15_delay-0.04s.jpg","frame_16_delay-0.04s.jpg","frame_17_delay-0.04s.jpg","frame_18_delay-0.04s.jpg","frame_19_delay-0.04s.jpg","frame_20_delay-0.05s.jpg","frame_21_delay-0.04s.jpg","frame_22_delay-0.04s.jpg","frame_23_delay-0.04s.jpg","frame_24_delay-0.04s.jpg","frame_25_delay-0.04s.jpg","frame_26_delay-0.05s.jpg","frame_27_delay-0.04s.jpg","frame_28_delay-0.04s.jpg","frame_29_delay-0.04s.jpg","frame_30_delay-0.04s.jpg","frame_31_delay-0.04s.jpg","frame_32_delay-0.05s.jpg","frame_33_delay-0.04s.jpg","frame_34_delay-0.04s.jpg","frame_35_delay-0.04s.jpg","frame_36_delay-0.04s.jpg","frame_37_delay-0.04s.jpg","frame_38_delay-0.05s.jpg","frame_39_delay-0.04s.jpg","frame_40_delay-0.04s.jpg","frame_41_delay-0.04s.jpg","frame_42_delay-0.04s.jpg","frame_43_delay-0.04s.jpg","frame_44_delay-0.05s.jpg","frame_45_delay-0.04s.jpg","frame_46_delay-0.04s.jpg","frame_47_delay-0.04s.jpg","frame_48_delay-0.04s.jpg","frame_49_delay-0.04s.jpg","frame_50_delay-0.05s.jpg","frame_51_delay-0.04s.jpg","frame_52_delay-0.04s.jpg","frame_53_delay-0.04s.jpg","frame_54_delay-0.04s.jpg","frame_55_delay-0.04s.jpg","frame_56_delay-0.05s.jpg","frame_57_delay-0.04s.jpg","frame_58_delay-0.04s.jpg","frame_59_delay-0.04s.jpg","frame_60_delay-0.04s.jpg","frame_61_delay-0.04s.jpg","frame_62_delay-0.05s.jpg","frame_63_delay-0.04s.jpg","frame_64_delay-0.04s.jpg","frame_65_delay-0.04s.jpg","frame_66_delay-0.04s.jpg","frame_67_delay-0.04s.jpg","frame_68_delay-0.05s.jpg","frame_69_delay-0.04s.jpg","frame_70_delay-0.04s.jpg","frame_71_delay-0.04s.jpg","frame_72_delay-0.04s.jpg"];
+
+  const COUNT=FRAMES.length;
+  const path=(name)=>FRAME_DIR+name;
+  const BG='#f3efe6'; // --bone
+  const heroSlot=document.getElementById('wtHeroSlot');
+  const muniSlot=document.getElementById('wtMuniSlot');
+  if(!heroSlot||!muniSlot)return;
+
+  // Reduced motion: keep the static slot images already in the markup —
+  // frame 0 on the right of the Hero, the final frame on the left of
+  // Municipal Websites. No travelling element, no scroll animation.
+  const reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  if(reduced)return;
+
+  // One shared <img> (NOT a canvas) that travels between the two slots and
+  // swaps its src per frame. Using a real <img> means it always renders the
+  // actual frame — no canvas draw/backing-store pitfalls, and no blank square:
+  // an <img> keeps showing the previous frame until the next decodes.
+  const el=document.createElement('img');
+  el.className='wt-shared';
+  el.decoding='async';
+  el.setAttribute('role','img');
+  el.setAttribute('alt','A municipal clerk reviewing information on a tablet, transitioning to working at a desk and publishing updates to the town website.');
+  el.src=path(FRAMES[0]); // first frame visible immediately
+  document.body.appendChild(el);
+  document.body.classList.add('wt-motion'); // hides the static slot art
+
+  // Preload every frame into cache so src swaps are instant (no flicker).
+  const cache=new Array(COUNT);
+  function preload(i){ if(cache[i])return; const im=new Image(); im.decoding='async'; im.src=path(FRAMES[i]); cache[i]=im; }
+  let next=0;
+  (function stream(){
+    for(const end=Math.min(next+8,COUNT);next<end;next++)preload(next);
+    if(next<COUNT)setTimeout(stream,120);
+  })();
+
+  const lerp=(a,b,t)=>a+(b-a)*t;
+  const ease=(t)=>t<0.5?2*t*t:1-Math.pow(-2*t+2,2)/2; // easeInOutQuad for the travel
+  let range=1,shown=0;
+
+  // Scroll distance between the two slots' document positions. The transition
+  // runs from scrollY 0 (frame 0, hero-right) to scrollY=range (frame 72,
+  // muni-left), where the muni slot reaches the height the hero slot started
+  // at — a calm horizontal-ish hand-off.
+  function measure(){
+    const sY=window.scrollY||window.pageYOffset||0;
+    const A=heroSlot.getBoundingClientRect().top+sY;
+    const B=muniSlot.getBoundingClientRect().top+sY;
+    range=Math.max(1,B-A);
+  }
+  function setFrame(i){ if(i!==shown){ el.src=path(FRAMES[i]); shown=i; } }
+  function frame(){
+    const sY=window.scrollY||window.pageYOffset||0;
+    const p=Math.min(1,Math.max(0,sY/range));
+    const e=ease(p);
+    // Live rects of both slots → interpolate position + size (the shared element).
+    const hr=heroSlot.getBoundingClientRect(),mr=muniSlot.getBoundingClientRect();
+    const L=lerp(hr.left,mr.left,e),T=lerp(hr.top,mr.top,e);
+    const W=lerp(hr.width,mr.width,e),H=lerp(hr.height,mr.height,e);
+    el.style.width=W+'px';el.style.height=H+'px';
+    el.style.transform='translate('+L+'px,'+T+'px)';
+    setFrame(Math.round(p*(COUNT-1))); // frame index from raw progress (even playback)
+    requestAnimationFrame(frame);
+  }
+  measure();
+  requestAnimationFrame(frame);
+  window.addEventListener('resize',measure,{passive:true});
+  window.addEventListener('load',measure); // re-measure after fonts/images settle
+})();
+</script>
 </body>
 </html>
